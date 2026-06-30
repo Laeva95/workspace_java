@@ -1,1 +1,14 @@
-/.metadata/
+# 이클립스 설정 파일 및 폴더 무시
+.metadata/
+.classpath
+.project
+.settings/
+
+# 컴파일된 클래스 파일 및 빌드 폴더 무시
+*.class
+bin/
+target/
+
+# OS 환경 파일 무시
+.DS_Store
+Thumbs.db
