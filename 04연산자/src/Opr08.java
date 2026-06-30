@@ -15,5 +15,10 @@ public class Opr08 {
 		
 		int c = ++a;	// c = 11;
 		
+		System.out.println(c);	// c = 11;
+		
+		c = b++;
+		
+		System.out.println(c);	// c = 10;
 	}
 }
