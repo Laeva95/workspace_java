@@ -20,5 +20,7 @@ public class Opr08 {
 		c = b++;
 		
 		System.out.println(c);	// c = 10;
+		
+		
 	}
 }
