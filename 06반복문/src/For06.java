@@ -6,6 +6,8 @@ public class For06 {
 		int sum = 0;
 		int count = 0;
 		
+		System.out.println("<< 1부터 100 사이의 소수 목록 >>");
+		
 		// 1부터 100까지 반복
 		for(int i = 2; i <= 100; i++) {
 			
@@ -24,9 +26,14 @@ public class For06 {
 			
 			// isPrime = true 라면 i가 소수라는 뜻이므로 출력 후 sum에 더하고, count++;
 			if(isPrime) {
-				System.out.println(i);
+				System.out.print(i + "\t");
 				sum += i;
 				count++;
+				
+				// 5개 출력마다 줄바꿈
+				if(count % 5 == 0) {
+					System.out.println();
+				}
 			}
 		}
 		// 총합, 카운트 출력
