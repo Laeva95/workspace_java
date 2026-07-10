@@ -18,6 +18,13 @@ public class test7 {
 		for(int i = 0; i < arr.length; i++) {
 			sum += arr[i];
 		}
+		
+		sum = 0;
+		
+		// 향상된 for문
+		for(int i : arr) {
+			sum += i;
+		}
 
 				
 		

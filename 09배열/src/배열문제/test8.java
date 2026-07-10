@@ -37,8 +37,8 @@ public class test8 {
 		//(2) 평균계산 코드 작성
 		average = (float)total / (arr.length * arr[0].length);		// 행 개수 * 열 개수로 배열 값의 총 개수를 구함
 		
-		System.out.println("total=" + total);						// 출력: 325
-		System.out.println("average="+average);						// 출력: 16.25
+		System.out.println("total=" + total);						// 출력: total=325
+		System.out.println("average="+average);						// 출력: average=16.25
 		
 	}
 
