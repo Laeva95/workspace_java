@@ -25,7 +25,7 @@ public class Student {
 		student1.age = 20;
 		student1.studentId = "2025001";
 		
-		// 3. 정보 출력 메서드 호출
+		// 3. 정보 출력 메서드 호출	
 		student1.prinfInfo();
 		
 		// 4. 공부 메서드 호출
