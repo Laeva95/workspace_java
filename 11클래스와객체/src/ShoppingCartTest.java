@@ -27,6 +27,8 @@ public class ShoppingCartTest {
 		*/
 		void addQuantity(int n) {
 			// TODO: 수량 추가 처리
+			System.out.println("수량: " + quantity + " => " + (quantity + n));
+			quantity += n;
 		}
 
 		/*
@@ -35,7 +37,8 @@ public class ShoppingCartTest {
 		*/
 		int calcTotal() {
 			// TODO: 합계 계산 후 반환
-			return 0;
+			int total = price * quantity;
+			return total;
 		}
 
 		/*
@@ -44,6 +47,7 @@ public class ShoppingCartTest {
 		*/
 		void printCart() {
 			// TODO: 장바구니 출력
+			System.out.println("상품명: " + itemName + " 수량: " + quantity + " 합계: " + calcTotal());
 		}
 
 	public static void main(String[] args) {
@@ -55,9 +59,10 @@ public class ShoppingCartTest {
 		cart.itemName = "무선 마우스";
 		cart.price = 15000;
 		cart.quantity = 1;
-
+		
 		//3. 기능 호출
 		cart.addQuantity(2);
 		cart.printCart();
+		
 	}
 }

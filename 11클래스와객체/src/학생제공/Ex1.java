@@ -1,3 +1,4 @@
+package 학생제공;
 /*
 1.객체지향 프로그래밍(Object-Oriented Programming)
 ->현실세계에 존재하는 사물 과 대상, 그리고 그에따른 동작(행위)을 
@@ -68,11 +69,34 @@
 //과일장수 FruitSeller라는 이름의 틀(클래스)을 정의합니다.
 class FruitSeller{ 
 	
-	/*변수*/
-	
+/*변수*/
+//	1.사과 한 개당 가격을 저장할 변수 
+//	2.보유하고 있는 사과의 수를 저장할 변수
+//	3.판매수익을 저장할 변수
+	final int APPLE_PRICE = 1000;
+	int numOfApple;
+	int myMoney;
 
-	/*메소드*/
+/*메소드*/
+//	1.과일장수의 과일판매 동작(기능,행동)을 할 메소드
+//	2.사과판매후 남은 사과수,판매수익 출력 하는 기능의 메소드
+	int saleApple(int money) {// 사과 구매 금액을 과일 구매자 객체로부터 전달받음
+		// 구매자가 지불한 금액을 사과 하나의 금액으로 나누어 몇 개를 판매했는지 구함
+		int num = money / APPLE_PRICE;
+		
+		// 판매 개수만큼 사과에서 차감
+		numOfApple -= num;
+		
+		// 판매 수익에 money만큼 증가
+		myMoney += money;
+		
+		return num;
+	}
 	
+	public void showSellResult() {
+		System.out.println("과일장수의 현재 남은 사과 수: " + numOfApple);
+		System.out.println("과일장수의 현재 판매 수익: " + myMoney);
+	}
 	
 	
 }// FruitSeller 클래스 끝
@@ -82,10 +106,19 @@ class FruitSeller{
 //(2단계) 클래스(설계도) 정의 : 변수 + 메소드
 //나(과일구매자) FruitBuyer라는 이름의 틀(클래스)을 정의합니다.
 class FruitBuyer {
-	/*변수*/
-	
+/*변수*/
+//  1.현재 소유하고 있는 현금을 저장할 변수
+//	2.현재 소유하고 있는 사과수를 저장할 변수
+	int numOfApple;
+	int myMoney = 5000;
 
-	/*메소드*/
+/*메소드*/
+//	1.과일구매자의 과일구매 동작(기능,행동)을 할 메소드
+//	2.과일구매후 현재 남은 현금과 사과의수 출력 기능의 메소드 
+	
+	public void buyApple(FruitSeller seller, int money) {
+		
+	}
 }
 
 

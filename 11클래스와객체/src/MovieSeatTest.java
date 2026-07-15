@@ -43,6 +43,7 @@ public class MovieSeatTest {
 			// TODO: 취소 처리
 			isReserved = false;
 			reservedBy = "";
+			System.out.println("예약을 취소했습니다.");
 		}
 
 		/*
@@ -51,7 +52,11 @@ public class MovieSeatTest {
 		*/
 		void printSeat() {
 			// TODO: 좌석 정보 출력
-			System.out.println("좌석: " + seatNumber + "예약 여부: " + isReserved + "예약자: " + reservedBy);
+			System.out.print(" 좌석: " + seatNumber + " 예약 여부: " + isReserved);
+			
+			String s1 = isReserved ? " 예약자: " + reservedBy : "";
+			
+			System.out.println(s1);
 		}
 
 	public static void main(String[] args) {
