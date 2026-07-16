@@ -57,6 +57,7 @@ public class Car {
 		
 		// 속도 10 감소
 		kia.breaks(10);
+
 	}
 }
 

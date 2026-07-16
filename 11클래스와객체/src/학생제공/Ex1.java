@@ -14,8 +14,6 @@ package 학생제공;
 ->속성(데이터) + 동작(기능,행동)
 
 */
-
-
 //과일장수 이야기  스토리~
 /*
 	[ 현실 세계 상황 재연 1 ]
@@ -93,7 +91,7 @@ class FruitSeller{
 		return num;
 	}
 	
-	public void showSellResult() {
+	public void showSaleResult() {
 		System.out.println("과일장수의 현재 남은 사과 수: " + numOfApple);
 		System.out.println("과일장수의 현재 판매 수익: " + myMoney);
 	}
@@ -115,9 +113,18 @@ class FruitBuyer {
 /*메소드*/
 //	1.과일구매자의 과일구매 동작(기능,행동)을 할 메소드
 //	2.과일구매후 현재 남은 현금과 사과의수 출력 기능의 메소드 
-	
 	public void buyApple(FruitSeller seller, int money) {
 		
+		// 사과를 구매한만큼 보유 개수 증가
+		numOfApple += seller.saleApple(money);
+		
+		// 잔액에서 사과를 구매하는데 소모한 금액 감소
+		myMoney -= money;
+		
+	}
+	public void showBuyResult() {
+		System.out.println("현재 잔액: " + myMoney);
+		System.out.println("보유 사과 수: " + numOfApple);
 	}
 }
 
@@ -131,20 +138,41 @@ public class Ex1 {
 	//-클래스 (설계도,틀) 을 통해 -> 객체생성
 	
 	//과일판매자 객체생성
-	
+	FruitSeller seller = new FruitSeller();
+	//과일판매자 사과 보유량 20개로 설정
+	seller.numOfApple = 20;
+	//과일판매자 잔액 0원으로 설정
+	seller.myMoney = 0;
 	
 	//과일구매자 객체생성
-	
+	FruitBuyer buyer = new FruitBuyer();
 	
 	//과일구매자는  과일판매자에게 2000원어치 사과 구매하기
-	
+	buyer.buyApple(seller, 2000);
 	
 	//과일 판매자의 현재상황
 	System.out.println("--과일 판매자의 현재상황--");
+	seller.showSaleResult();	// 과일장수의 현재 남은 사과 수: 18
+								// 과일장수의 현재 판매 수익: 2000
 	
 	//과일 구매자의 현재상황
 	System.out.println("--과일 구매자의 현재상황--");
-				
+	buyer.showBuyResult();		// 현재 잔액: 3000
+								// 보유 사과 수: 2
+	
+	// 2000원어치 사과 추가 구매
+	buyer.buyApple(seller, 2000);
+	
+	//과일 판매자의 현재상황
+	System.out.println("-------과일 판매자의 현재상황 2번째-------");
+	seller.showSaleResult();	// 과일장수의 현재 남은 사과 수: 16
+								// 과일장수의 현재 판매 수익: 4000
+	
+	//과일 구매자의 현재상황
+	System.out.println("-------과일 구매자의 현재상황 2번째-------");
+	buyer.showBuyResult();		// 현재 잔액: 1000
+								// 보유 사과 수: 4
+	
 	}
 
 }
