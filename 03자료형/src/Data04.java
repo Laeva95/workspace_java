@@ -3,7 +3,6 @@
 	변수를 선언할 때 사용한 자료형의 역할
 */
 
-import java.io.Console;
 
 public class Data04 {
 

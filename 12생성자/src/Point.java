@@ -74,7 +74,21 @@ public class Point {
 		
 		// ==================================================
 		
-		// 
+		// 매개변수가 하나인 생성자
+		Point point02 = new Point(300);
+		
+		point02.printCoordinates();
+		
+		System.out.println("========================");
+		
+		// ==================================================
+		
+		// 매개변수가 두개인 생성자
+		Point point03 = new Point(300, 400);
+		
+		point03.printCoordinates();
+		
+		//System.out.println("출력 x, y: " + point03.getX() + ", " + point03.getY());
 		
 		
 	}
