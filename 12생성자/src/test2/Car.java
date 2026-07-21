@@ -16,13 +16,13 @@ public class Car {
 	int maxSpeed;					// 자동차 최고 속력
 	
 	// 생성자 오버로딩
-	public Car(String model) {
+	public Car(String model) {									// 생성자 1
 		this(model, "검정색");
 	}
-	public Car(String model, String color) {
+	public Car(String model, String color) {					// 생성자 2
 		this(model, color, 250);
 	}
-	public Car(String model, String color, int maxSpeed) {
+	public Car(String model, String color, int maxSpeed) {		// 생성자 3
 		this.model = model;
 		this.color = color;
 		this.maxSpeed = maxSpeed;
