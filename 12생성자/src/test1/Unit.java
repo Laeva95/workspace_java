@@ -63,11 +63,20 @@ public class Unit {
 		System.out.println();
 		
 		marine.attack(zergling);
+		zergling.attack(marine);
 		
 		System.out.println();
 		
 		tank.attack(zergling);
 		tank.attack(zergling);
+		
+		tank.attack(marine);
+		tank.attack(marine);
+		tank.attack(marine);
+		
+		marine.status();
+		zergling.status();
+		tank.status();
 		
 	}
 }
