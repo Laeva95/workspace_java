@@ -147,35 +147,29 @@ class FruitBuyer {
 public class Ex1_2 {
 	public static void main(String[] args) {
 		
-		// 과일장수 1
-		// 사과 30개 보유, 개당 가격 1500원
+		// 과일 장수 1 객체 생성
 		FruitSeller seller01 = new FruitSeller(1500, 30, 0);
 		
-		// 과일장수 2
-		// 사과 20개 보유, 개당 가격 1000원
-		FruitSeller seller02 = new FruitSeller(1000, 20, 0);
+		// 과일 장수 2 객체 생성
+		FruitSeller seller02 = new FruitSeller(1000, 20, 5000);
 		
-		// 과일구매자
-		FruitBuyer buyer01 = new FruitBuyer(5000, 0);
+		// 과일 구매자 1 객체 생성
+		FruitBuyer buyer01 = new FruitBuyer(10000, 0);
 		
-		// 과일장수 1에게 4500원어치 사과 구매
+		// 과일 구매자 1 객체는 과일 장수 1에게 4500원을 지불하여 사과 구매
 		buyer01.buyApple(seller01, 4500);
-
-		// 과일구매자 객체의 변수 값 출력
-		buyer01.showBuyResult();
 		
-		// 과일장수1 객체의 변수 값 출력
+		// 상태 출력
+		buyer01.showBuyResult();
 		seller01.showSaleResult();
 		
-		System.out.println("================================================");
+		System.out.println("===================================");
 		
-		// 과일장수 2에게 2000원어치 사과 구매
+		// 과일 구매자 1 객체는 과일 장수 2에게 2000원을 지불하여 사과 구매
 		buyer01.buyApple(seller02, 2000);
 		
-		// 과일구매자 객체의 변수 값 출력
+		// 상태 출력
 		buyer01.showBuyResult();
-		
-		// 과일장수2 객체의 변수 값 출력
 		seller02.showSaleResult();
 		
 	}
