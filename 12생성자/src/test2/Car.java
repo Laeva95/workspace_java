@@ -29,8 +29,8 @@ public class Car {
 	}
 	
 	public static void main(String[] args) {
-		Car car01 = new Car("제네시스", "파란색", 300);
-		Car car02 = new Car("소나타", "검정색");
+//		Car car01 = new Car("제네시스", "파란색", 300);
+//		Car car02 = new Car("소나타", "검정색");
 		
 	}
 }

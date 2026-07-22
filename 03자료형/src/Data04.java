@@ -12,11 +12,11 @@ public class Data04 {
 				변수 메모리에 저장될 값을 결정함
 		*/
 		
-		int a = 1;
+//		int a = 1;
 		
-		double m = 2.4;
+//		double m = 2.4;
 		
-		boolean k = true;
+//		boolean k = true;
 		
 		/*
 			자료형 역할 2
@@ -37,11 +37,11 @@ public class Data04 {
 		
 		System.out.println(++s); 			// 출력: -32768  /  오버플로우 발생
 		
-		int c = 1000000000;
+//		int c = 1000000000;
 		
 		// int d = 123456l;					// long 자료형이 아니므로 에러 발생
 		
-		long l = 123456l;
+//		long l = 123456l;
 		
 	}
 }

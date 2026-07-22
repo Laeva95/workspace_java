@@ -3,7 +3,7 @@ public class PasswordEncryptionExample {
 
 	public static void main(String[] args) {
 		// 왼쪽, 오른쪽 비트 시프트 연산자를 사용해서 비밀번호를 암호화하고 복호화하는 예제
-		char a = 'h';
+//		char a = 'h';
 		
 //		System.out.println(a);
 		
