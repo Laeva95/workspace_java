@@ -91,6 +91,32 @@ class Phone {
 	}
 }
 
+// Pizza 클래스 작성
+// 변수
+// 기본 생성자
+// 매개변수 생성자
+class Pizza{
+	// 변수
+	String name;
+	String size;
+	int price;
+	
+	// 기본 생성자
+	public Pizza() {
+		this("치즈피자", "M");
+	}
+	
+	// 매개변수 생성자
+	public Pizza(String name, String size) {
+		this.name = name;
+		this.size = size;
+		if(size.equals("M")) {
+			this.price = 15000;
+		} else if(size.equals("L")) {
+			this.price = 20000;
+		}
+	}
+}
 public class 생성자_연습문제_5개 {
 
 	public static void main(String[] args) {
@@ -121,6 +147,45 @@ public class 생성자_연습문제_5개 {
 		System.out.println("\n===== 연습3 =====");
 
 		// 책 객체 만들기
-
+		Book book1 = new Book();
+		Book book2 = new Book("자바의정석", "남궁성", 30000);
+		
+		System.out.println(book1.title);
+		System.out.println(book1.author);
+		System.out.println(book1.price);
+		
+		System.out.println(book2.title);
+		System.out.println(book2.author);
+		System.out.println(book2.price);
+		
+		System.out.println("\n===== 연습 4 =====");
+		
+		// 폰 객체 만들기
+		Phone phone1 = new Phone();
+		Phone phone2 = new Phone("갤럭시S26");
+		Phone phone3 = new Phone("아이폰17", 512);
+		
+		System.out.println(phone1.model + " / " + phone1.storage + "GB");
+		System.out.println(phone2.model + " / " + phone2.storage + "GB");
+		System.out.println(phone3.model + " / " + phone3.storage + "GB");
+		
+		System.out.println("\n===== 연습 5 =====");
+		
+		// 피자 객체 만들기
+		Pizza pizza1 = new Pizza();
+		Pizza pizza2 = new Pizza("불고기피자", "L");
+		Pizza pizza3 = new Pizza("페퍼로니피자", "M");
+		
+		System.out.println(pizza1.name);
+		System.out.println(pizza1.size);
+		System.out.println(pizza1.price);
+		
+		System.out.println(pizza2.name);
+		System.out.println(pizza2.size);
+		System.out.println(pizza2.price);
+		
+		System.out.println(pizza3.name);
+		System.out.println(pizza3.size);
+		System.out.println(pizza3.price);
 	}
 }
