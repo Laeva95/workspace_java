@@ -132,11 +132,11 @@ public class Survivor { //생존자 설계도
 	public void fightWave(Zombie[] zombies) {
 		System.out.println("===== " + name + "의 웨이브 전투 시작! =====");
 		
-		for(int i = 0; i < zombies.length; i++) {
+		for(Zombie z : zombies) {
 			if(ammo <= 0) {
 				reload();
 			}
-			shoot(zombies[i]);
+			shoot(z);
 		}
 		
 		System.out.println("===== 웨이브 종료! =====");
@@ -191,7 +191,9 @@ public class Survivor { //생존자 설계도
 		//  (좀비 상태는 for문으로 배열을 돌며 zombies[i].status() 호출)
 
 		//>>> 여기에 종료 후 상태 출력 코드를 작성하세요.
+		System.out.println("===== 전투 종료 후 상태 =====");
 		leon.status();
+		
 		for(int i = 0; i < zombies.length; i++) {
 			zombies[i].status();
 		}
