@@ -1,13 +1,16 @@
 // 클래스 내부 멤버변수 만들기
 
 class Student{
+	// 객체 변수
 	int num;
+	
+	// 클래스 변수
 	static int staticNum;
 	
-	public Student() {
-		
-	}
+	// 기본 생성자
+	public Student() {}
 	
+	// 객체 메서드
 	void add(int i) {
 		num += i;
 		staticNum += i;
