@@ -96,7 +96,7 @@ class BankAccount {
 	//               totalAsset 에서도 amount만큼 뺀 뒤
 	//               "[계좌번호]에서 amount원 출금 완료 (잔액: balance원)" 출력 후
 	//               true 반환
-
+	
 	//>>> 여기에 withdraw 메소드를 작성하세요.
 	public boolean withdraw(int amount) {
 		if(amount > balance) {
@@ -167,7 +167,7 @@ public class Test2 {
 		accounts[1].deposit(20000);
 
 		//[12] accounts[2] (박민수) 계좌가 50000원 출금 시도
-		//     (박민수 잔액은 30000원뿐이라 50000원 출금은 실패해야 정상!)
+		//     (박민수 잔액은 30000원 뿐이라 50000원 출금은 실패해야 정상!)
 		//     ★withdraw의 반환값(boolean)을 변수에 저장한 뒤 if문으로 성공/실패를 나눠 출력★
 		//     성공하면 "출금 처리 완료" 출력, 실패하면 "출금 처리 불가" 출력
 
