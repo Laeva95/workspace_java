@@ -26,7 +26,7 @@ class Point3D_Before{
 	
 	public void setX(int _x) { x = _x; }
 	public void setY(int _y) { y = _y; }
-	public void setZ(int _z) { y = _z; }
+	public void setZ(int _z) { z = _z; }
 }
 
 class Point2D{
@@ -43,6 +43,7 @@ class Point2D{
 class Point3D extends Point2D{
 	private int z;
 	
+	// getter, setter
 	public int getZ() { return z; }
 	
 	public void setZ(int _z) { z = _z; }
@@ -51,9 +52,26 @@ class Point3D extends Point2D{
 public class Ex2 {
 
 	public static void main(String[] args) {
+		// 상속 받기 전의 클래스 객체 생성
+		System.out.println("===== Before =====");
 		
+		Point3D_Before before = new Point3D_Before();
 		
+		before.setX(10);
+		before.setY(20);
+		before.setZ(30);
 		
+		System.out.println("Before X: " + before.getX() + " , Y: " + before.getY() + " , Z: " + before.getZ());
 		
+		// 상속 받은 후의 클래스 객체 생성
+		System.out.println("===== After =====");
+		
+		Point3D after = new Point3D();
+		
+		after.setX(100);
+		after.setY(200);
+		after.setZ(300);
+		
+		System.out.println("After X: " + after.getX() + " , Y: " + after.getY() + " , Z: " + after.getZ());
 	}
 }
