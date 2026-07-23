@@ -46,17 +46,17 @@ class AAA{
 public class Ex2 {
 
 	public static void main(String[] args) {
-		AAA aaa = new AAA();
+//		AAA aaa = new AAA();
 		
 		AAA.staticNum = 50;
 		
-		aaa.staticNum = 50;
+//		aaa.staticNum = 50;
 		
 		int result = AAA.getStaticNum();
 		
 		System.out.println(result);
 		
-		result = aaa.getStaticNum();
+//		result = aaa.getStaticNum();
 		
 		System.out.println(result);
 		

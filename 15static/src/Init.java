@@ -26,6 +26,6 @@ public class Init {
 	}
 	public static void main(String[] args) {
 		Init i = new Init();
-		
+		System.out.println(i);
 	}
 }

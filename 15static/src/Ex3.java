@@ -37,11 +37,11 @@ public class Ex3 {
 		
 		System.out.println("main 메서드 시작");
 		
-		Ex3 ex = new Ex3();
+//		Ex3 ex = new Ex3();
 		
 		System.out.println("main 메서드 시작");
 		
-		Ex3 ex2 = new Ex3();
+//		Ex3 ex2 = new Ex3();
 		
 	}
 }
