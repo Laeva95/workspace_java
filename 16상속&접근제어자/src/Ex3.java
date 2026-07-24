@@ -40,10 +40,18 @@ public class Ex3 {
 	public static void main(String[] args) {
 
 		B b = new B();
+		// b.m  -> private 변수 m에 직접 접근할 수 없음
 		b.setM(5);
 		
+		// b.n  -> private 변수 n에 직접 접근할 수 없음
+		b.setN(10);
+		
+		b.p = 15;
+		System.out.println(b.toString());
+		
 		A a = new A();
-
+		a.setN(5);
+		a.p = 10;
 		
 	}
 }
