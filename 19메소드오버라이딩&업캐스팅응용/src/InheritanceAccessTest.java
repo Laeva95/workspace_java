@@ -23,8 +23,8 @@ class Person {
 	//        직접 접근할 수 있게 됩니다. (자식 클래스 Student에서도 직접 접근 불가)
 
 	//>>> 여기에 변수 2개를 선언하세요.
-
-
+	private String name;
+	private int age;
 
 	//[1-2] 생성자 작성
 	//      생성자 문법:  public 클래스명(매개변수들) { 초기화 코드 }
@@ -37,9 +37,10 @@ class Person {
 	//        이름이 같아 구분이 안 되므로 왼쪽에 this. 를 반드시 붙입니다.
 
 	//>>> 여기에 생성자를 작성하세요.
-
-
-
+	public Person(String name, int age) {
+		this.name = name;
+		this.age = age;
+	}
 
 	//[1-3] getter 메소드 2개 작성
 	//      getter 문법:  public 반환자료형 get변수명() { return this.변수명; }
@@ -49,8 +50,8 @@ class Person {
 	//        "값을 읽는 전용 public 메소드"를 대신 열어주는 것입니다.
 
 	//>>> 여기에 getter 2개를 작성하세요.
-
-
+	public String getName() { return name; }
+	public int getAge() { return age; }
 
 	//[1-4] showInfo 메소드 작성
 	//      문법:  public void showInfo() { 출력코드 }
@@ -60,9 +61,9 @@ class Person {
 	//        직접 읽을 수 있습니다.
 
 	//>>> 여기에 showInfo 메소드를 작성하세요.
-
-
-
+	public void showInfo() {
+		System.out.println("이름: " + name + ", 나이: " + age);
+	}
 }
 
 //[1-5] Student 클래스 전체 작성
@@ -95,9 +96,17 @@ class Person {
 //              부모에게 물려받은 getName(), getAge() 메소드를 호출해서 값을 얻습니다.
 
 //>>> 여기에 Student 클래스 전체를 작성하세요.
-class Student  {
+class Student extends Person{
+	private String major;
+	
+	public Student(String name, int age, String major) {
+		super(name, age);
+		this.major = major;
+	}
 
-
+	public void showInfo() {
+		System.out.println("이름: " + getName() + ", 나이: " + getAge() + ", 전공: " + major);
+	}
 
 
 }
@@ -116,15 +125,17 @@ class Animal {
 	//        직접 읽고 쓸 수 있게 됩니다.
 
 	//>>> 여기에 변수를 선언하세요.
-
-
+	protected String name;
+	
 	//[2-2] 생성자 작성
 	//      - 생성자 이름: Animal (클래스명과 동일, 반환타입 없음)
 	//      - 매개변수 1개: String name
 	//      - 내부 코드 1줄:  this.name = name;
 
 	//>>> 여기에 생성자를 작성하세요.
-
+	public Animal(String name) {
+		this.name = name;
+	}
 
 
 	//[2-3] sound 메소드 작성
@@ -133,11 +144,10 @@ class Animal {
 	//        System.out.println(this.name + "이(가) 동물 소리를 냅니다");
 
 	//>>> 여기에 sound 메소드를 작성하세요.
-
-
-
+	public void sound() {
+		System.out.println(name + "이(가) 동물 소리를 냅니다");
+	}
 }
-
 //[2-4] Dog 클래스 전체 작성
 //      class Dog extends Animal {  으로 시작하세요.
 //
@@ -156,11 +166,15 @@ class Animal {
 //              직접 읽을 수 있습니다. (문제1과 달리 getter가 필요 없음!)
 
 //>>> 여기에 Dog 클래스 전체를 작성하세요.
-class Dog {
+class Dog extends Animal{
 	
-	
-	
-	
+	public Dog(String name) {
+		super(name);
+	}
+	@Override
+	public void sound() {
+		System.out.println(name + "이(가) 멍멍 짖습니다.");
+	}
 }
 
 //[2-5] Cat 클래스 전체 작성
@@ -171,10 +185,14 @@ class Dog {
 //          System.out.println(this.name + "이(가) 야옹 웁니다");
 
 //>>> 여기에 Cat 클래스 전체를 작성하세요.
-class Cat {
-	
-
-	
+class Cat extends Animal{
+		public Cat(String name) {
+			super(name);
+		}
+		@Override
+		public void sound() {
+			System.out.println(name + "이(가) 야옹 웁니다");
+		}
 }
 
 //==========================================================================
@@ -193,8 +211,8 @@ class Employee {
 	//         -> 자식(Manager)은 직접 접근 가능하게 됨
 
 	//>>> 여기에 변수 2개를 선언하세요.
-
-
+	private String name;
+	protected int salary;
 
 	//[3-2] 생성자 작성
 	//      - 생성자 이름: Employee
@@ -204,7 +222,10 @@ class Employee {
 	//          this.salary = salary;
 
 	//>>> 여기에 생성자를 작성하세요.
-
+	public Employee(String name, int salary) {
+		this.name = name;
+		this.salary = salary;
+	}
 
 
 
@@ -213,7 +234,7 @@ class Employee {
 	//      ※ private인 name을 자식이나 바깥에서 "읽을 수 있게" 열어주는 통로
 
 	//>>> 여기에 getName 메소드를 작성하세요.
-
+	public String getName() { return name; }
 
 	//[3-4] showSalary 메소드 작성
 	//      문법:  public void showSalary() { 출력코드 }
@@ -221,7 +242,9 @@ class Employee {
 	//        System.out.println(this.name + "의 급여: " + this.salary + "원");
 
 	//>>> 여기에 showSalary 메소드를 작성하세요.
-
+	public void showSalary() {
+		System.out.println(name + "의 급여: " + salary + "원");
+	}
 
 
 }
@@ -255,8 +278,21 @@ class Employee {
 //              getTotalPay()를 호출해서 사용합니다.
 
 //>>> 여기에 Manager 클래스 전체를 작성하세요.
-class Manager {
+class Manager extends Employee{
+	private int bonus;
+	public Manager(String name, int salary, int bonus) {
+		super(name, salary);
+		this.bonus = bonus;
+	}
 	
+	public int getTotalPay() {
+		return salary + bonus;
+	}
+	
+	@Override
+	public void showSalary() {
+		System.out.println(getName() + "의 총급여(보너스포함): " + getTotalPay() + "원");
+	}
 	
 }
 
@@ -266,13 +302,13 @@ class Manager {
 //              자식마다 오버라이딩으로 자기만의 계산식을 넣는다.
 //==========================================================================
 
-class Shape {
+abstract class Shape {
 
 	//[4-1] 객체 변수 1개 선언
 	//      private 접근제어자, String 자료형, 변수명 shapeName  (도형 이름 저장용)
 
 	//>>> 여기에 변수를 선언하세요.
-
+	private String shapeName;
 
 	//[4-2] 생성자 작성
 	//      - 생성자 이름: Shape
@@ -280,14 +316,16 @@ class Shape {
 	//      - 내부 코드 1줄:  this.shapeName = shapeName;
 
 	//>>> 여기에 생성자를 작성하세요.
-
+	public Shape(String shapeName) {
+		this.shapeName = shapeName;
+	}
 
 
 	//[4-3] getter 작성
 	//      문법:  public String getShapeName() { return this.shapeName; }
 
 	//>>> 여기에 getShapeName 메소드를 작성하세요.
-
+	public String getShapeName() { return shapeName; }
 
 	//[4-4] getArea 메소드 작성
 	//      문법:  public double getArea() { return 0.0; }
@@ -297,7 +335,7 @@ class Shape {
 	//        (자식들이 이 메소드를 오버라이딩해서 진짜 계산식으로 교체할 예정)
 
 	//>>> 여기에 getArea 메소드를 작성하세요.
-
+	public abstract double getArea();
 
 
 }
@@ -320,10 +358,16 @@ class Shape {
 //            * Math.PI : 자바가 미리 준비해 둔 원주율 값(3.141592...)
 
 //>>> 여기에 Circle 클래스 전체를 작성하세요.
-class Circle {
-	
-	
-	
+class Circle extends Shape{
+	private double radius;
+	public Circle(double radius) {
+		super("원");
+		this.radius = radius;
+	}
+	@Override
+	public double getArea() {
+		return Math.PI * radius * radius;
+	}
 }
 
 //[4-6] Rectangle 클래스 전체 작성
@@ -343,11 +387,20 @@ class Circle {
 //          - 반환 코드 1줄:  return this.width * this.height;
 
 //>>> 여기에 Rectangle 클래스 전체를 작성하세요.
-class Rectangle  {
+class Rectangle extends Shape {
+	private double width;
+	private double height;
 	
-
-
-
+	public Rectangle(double width, double height) {
+		super("사각형");
+		this.width = width;
+		this.height = height;
+	}
+	
+	@Override
+	public double getArea() {
+		return width * height;
+	}
 }
 
 //==========================================================================
@@ -363,7 +416,7 @@ class BankAccount {
 	//      private 접근제어자, int 자료형, 변수명 balance  (잔액 저장용)
 
 	//>>> 여기에 변수를 선언하세요.
-
+	private int balance;
 
 	//[5-2] 생성자 작성
 	//      - 생성자 이름: BankAccount
@@ -371,7 +424,9 @@ class BankAccount {
 	//      - 내부 코드 1줄:  this.balance = balance;
 
 	//>>> 여기에 생성자를 작성하세요.
-
+	public BankAccount(int balance) {
+		this.balance = balance;
+	}
 
 
 	//[5-3] deposit 메소드 작성 (입금 기능, 출력은 없음)
@@ -380,14 +435,16 @@ class BankAccount {
 	//        * this.balance = this.balance + amount; 를 줄여 쓴 것
 
 	//>>> 여기에 deposit 메소드를 작성하세요.
-
+	public void deposit(int amount) {
+		balance += amount;
+	}
 
 
 	//[5-4] getter 작성
 	//      문법:  public int getBalance() { return this.balance; }
 
 	//>>> 여기에 getBalance 메소드를 작성하세요.
-
+	public int getBalance() { return balance; }
 
 }
 
@@ -423,11 +480,17 @@ class BankAccount {
 //            System.out.println("이자 " + interest + "원이 입금되었습니다. (현재 잔액: " + getBalance() + "원)");
 
 //>>> 여기에 SavingsAccount 클래스 전체를 작성하세요.
-class SavingsAccount {
-
-	
-	
-	
+class SavingsAccount extends BankAccount{
+	private double interestRate;
+	public SavingsAccount(int balance, double interestRate) {
+		super(balance);
+		this.interestRate = interestRate;
+	}
+	public void addInterest() {
+		int interest = (int)(getBalance() * interestRate);
+		deposit(interest);
+		System.out.println("이자 " + interest + "원이 입금되었습니다. (현재 잔액: " + getBalance() + "원)");
+	}
 }
 
 //==========================================================================

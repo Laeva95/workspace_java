@@ -132,26 +132,32 @@ class Menu {
 
 //>>> 여기에 Coffee 클래스 전체를 작성하세요.
 class Coffee extends Menu{
+	// 아이스 유무를 결정하는 변수
 	private boolean iced;
 	
+	// 메뉴 이름, 가격을 부모 생성자에 전달
+	// 아이스 유무는 자식 생성자에서 처리
 	public Coffee(String menuName, int price, boolean iced) {
 		super(menuName, price);
 		this.iced = iced;
 	}
+	
+	public int getFinalPrice() {
+		if(this.iced) {
+			return this.price += 500;
+		} 
+		
+		return this.price;
+	}
+	@Override
+	public void showMenu() {
+		if(this.iced) {
+			System.out.println("[커피] 아이스 " + getMenuName() + " - " + getFinalPrice() + "원(아이드 +500원)");
+		} else {
+			System.out.println("[커피] 따뜻한 " + getMenuName() + " - " + getFinalPrice() + "원");
+		}
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //==========================================================================

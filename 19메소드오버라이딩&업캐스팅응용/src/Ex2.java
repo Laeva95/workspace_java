@@ -20,7 +20,7 @@ class Line extends DObject{
 	}
 }
 
-class Circle extends DObject{
+class Circles extends DObject{
 	@Override
 	public void draw() {
 		System.out.println("원을 그린다");
@@ -34,7 +34,7 @@ public class Ex2 {
 		
 		line.draw();					// 오버라이딩 된 메소드 호출
 		
-		DObject circle = new Circle();
+		DObject circle = new Circles();
 		
 		circle.draw();					// 오버라이딩 된 메소드 호출
 		

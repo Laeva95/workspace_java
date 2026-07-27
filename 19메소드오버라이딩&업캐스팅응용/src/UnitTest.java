@@ -191,12 +191,13 @@ class Tank extends Unit {
 		if(siegeMode) {
 			System.out.println(name + "은(는) 이미 시즈 모드입니다.");
 			return;
-		} else {
-			siegeMode = true;
-			super.damage += 15;
-			System.out.println(name + "이(가) 시즈 모드로 전환!");
-			System.out.println(">>> 공격력 +15 (이동 불가)");
-		}
+		} 
+		
+		siegeMode = true;
+		super.damage += 15;
+		System.out.println(name + "이(가) 시즈 모드로 전환!");
+		System.out.println(">>> 공격력 +15 (이동 불가)");
+		
 	}
 }
 
