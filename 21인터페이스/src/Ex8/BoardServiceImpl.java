@@ -56,16 +56,46 @@ public class BoardServiceImpl implements BoardService {
 	public void showDetail(int boardId) {
 		printTitle("상세 보기");
 		
-		repository.selectOne(boardId);
+		Board found = repository.selectOne(boardId);
+		
+		if(found == null) {
+			System.out.println(boardId + "번 글을 찾을 수 없습니다");
+			return;
+		}
+		
+		System.out.println("글번호: " + found.getId());
+		System.out.println("제목: " + found.getTitle());
+		System.out.println("작성자: " + found.getWriter());
+		System.out.println("내용: " + found.getContent());
+		
+		
 	}
 
 	@Override
 	public void modify(int boardId, String newContent) {
+		printTitle("글 수정");
+		
+		if(repository.update(boardId, newContent)) {
+			// 글 수정에 성공했을 경우
+			System.out.println(boardId + "번 글을 수정했습니다.");
+		} else {
+			// 글 수정에 실패했을 경우
+			System.out.println(boardId + "번 글을 찾을 수 없습니다.");
+		}
 		
 	}
 
 	@Override
 	public void remove(int boardId) {
+		printTitle("글 삭제");
+		
+		if(repository.delete(boardId)) {
+			// 글 삭제에 성공했을 경우
+			System.out.println(boardId + "번 글을 삭제했습니다.");
+		} else {
+			// 글 삭제에 실패했을 경우
+			System.out.println(boardId + "번 글을 찾을 수 없습니다.");
+		}
 		
 	}
 

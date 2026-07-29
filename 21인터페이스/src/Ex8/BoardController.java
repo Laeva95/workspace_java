@@ -25,4 +25,14 @@ public class BoardController {
 		service.showDetail(boardId);
 	}
 	
+	// 특정 글 수정 요청을 service 에게 전달
+	public void requestModify(int boardId, String newContent) {
+		service.modify(boardId, newContent);
+	}
+	
+	// 특정 글 삭제 요청을 service 에게 전달
+	public void requestRemove(int boardId) {
+		service.remove(boardId);
+	}
+	
 }

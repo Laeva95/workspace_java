@@ -34,5 +34,25 @@ public class BoardMain {
 		// ---------------------------------------
 		// 3. 글 목록 조회
 		controller.requestList();
+		
+		// ---------------------------------------
+		// 4. 특정 글 하나 상세 조회
+		controller.requestDetail(2);
+		
+		controller.requestDetail(99);
+		
+		// ---------------------------------------
+		// 5. 특정 글 하나 수정
+		controller.requestModify(1, "내용을 변경합니다.");
+		
+		// 변경한 내용 확인
+		controller.requestDetail(1);
+		
+		// ---------------------------------------
+		// 6. 특정 글 하나 삭제
+		controller.requestRemove(1);
+		controller.requestRemove(1);
+		
+		
 	}
 }
