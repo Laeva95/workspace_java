@@ -1,4 +1,7 @@
 package sec08.exam01;
+
+import sec08.exam01.MemberManager.Member;
+
 // 알림 발송 부모 클래스
 class Notifier{
 	public void send(String msg) {
@@ -62,8 +65,8 @@ class MemberManager{
 	public void printAll() {
 		System.out.println("-------------------------------");
 		System.out.println("[회원 목록] 총 " + count + "명");
-		for(Member m : members) {
-			System.out.println(m.getId() + " | " + m.getName() + " | " + m.getAge());
+		for(int i = 0; i < count; i++) {
+			System.out.println(members[i].getId() + " | " + members[i].getName() + " | " + members[i].getAge());
 		}
 		
 	}
@@ -74,8 +77,46 @@ class MemberManager{
 public class MemberManagerExample {
 
 	public static void main(String[] args) {
+		Notifier notifier = new Notifier() {
+			@Override
+			public void send(String msg) {
+				System.out.println("[SMS 발송] " + msg);
+			}
+		};	
 		
+		MemberManager manager = new MemberManager();
 		
+		manager.setValidator(new MemberManager.Validator() {
+			@Override
+			public boolean check(MemberManager.Member member) {
+				
+				if(member.getName() == null || member.getName().trim().length() == 0) {
+					System.out.println("이름을 입력해주세요.");
+					return false;
+				}
+				if(member.getAge() < 14) {
+					System.out.println("14세 미만은 가입 할 수 없습니다.");
+					return false;
+				}
+				
+				return true;
+			}
+		});
 		
+		// =======================================================
+		
+		manager.setJoinListener(new MemberManager.JoinListener() {
+			@Override
+			public void onJoin(MemberManager.Member member) {
+				notifier.send(member.getName() + "님, 가입을 환영합니다!(회원번호: " + member.getId() + ")");
+			}
+		});
+		
+		manager.join(new Member("김철수", 20));
+		manager.join(new Member("박영희", 35));
+		manager.join(new Member("이꼬마", 12));
+		manager.join(new Member("     ", 30));
+		
+		manager.printAll();
 	}
 }
