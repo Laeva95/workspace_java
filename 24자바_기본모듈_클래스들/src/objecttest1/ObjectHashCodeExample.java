@@ -1,7 +1,5 @@
 package objecttest1;
 
-import java.lang.annotation.Target;
-import java.util.Objects;
 
 class Student{
 	
@@ -53,9 +51,37 @@ public class ObjectHashCodeExample {
 		System.out.println("obj1.hashCode(): " + obj1.hashCode());
 		System.out.println("obj2.hashCode(): " + obj2.hashCode());
 		
+		System.out.println("obj1.hashCode(): " + obj1.hashCode());
 		
+		System.out.println("------------------------------------");
 		
+		// ==============================================
 		
+		Student student1 = new Student(1, "홍길동");
+		Student student2 = new Student(1, "홍길동");
+		
+		System.out.println("student1.hashCode() = " + student1.hashCode());
+		System.out.println("student2.hashCode() = " + student2.hashCode());
+		
+		System.out.println("student1 == student2 = " + (student1 == student2));
+		
+		if(student1.hashCode() == student2.hashCode()) {
+			if(student1.equals(student2)) {
+				System.out.println("해시 코드가 같고 인스턴스 변수 값도 같으므로 동등 객체입니다.");
+			}else {
+				System.out.println("해시 코드는 같지만 인스턴스 변수 값이 다르므로 동등 객체가 아닙니다.");
+			}
+		}else {
+			System.out.println("해시 코드가 다르므로 동등 객체가 아닙니다.");
+		}
+		
+		System.out.println("---------------------------------------------");
+		
+		Student student3 = new Student(2, "김철수");
+		
+		System.out.println("student3.hashCode() = " + student3.hashCode());
+		
+		System.out.println("student1.equals(student3) = " + student1.equals(student3));
 		
 	}
 }
