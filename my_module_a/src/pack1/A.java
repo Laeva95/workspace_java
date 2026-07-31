@@ -1,6 +1,7 @@
 package pack1;
 
 import pack2.B;
+import pack3.C;
 
 public class A {
 	public void method() {
@@ -8,5 +9,9 @@ public class A {
 		
 		B b = new B();
 		b.method();
+		
+	}
+	public C getC() {
+		return new C();
 	}
 }
