@@ -34,6 +34,7 @@ public class ObjectEqualsExample {
 		System.out.println("member1 == member3 = " + (member1 == member3));
 		
 		// ==============================================================
+		
 		Member member4 = new Member("hong");
 		
 		Member member5 = new Member("hong");
@@ -44,6 +45,21 @@ public class ObjectEqualsExample {
 		
 		// ==============================================================
 		
+		Object object1 = new Object();
+		
+		Object object2 = new Object();
+		
+		System.out.println("object1.equals(object2) = " + object1.equals(object2));
+		
+		// ==============================================================
+		
+		String str1 = new String("java");
+		
+		String str2 = new String("java");
+		
+		System.out.println("str1 == str2 = " + (str1 == str2));
+		
+		System.out.println("str1.equals(str2) = " + str1.equals(str2));
 		
 		
 		
