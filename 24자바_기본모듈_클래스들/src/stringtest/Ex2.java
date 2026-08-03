@@ -44,6 +44,40 @@ public class Ex2 {
 		
 		System.out.println(b.strip());
 		
+		System.out.println("================================================");
+		
+		String c = "JAVA";
+		String d = new String("PG");
+		
+		System.out.println(c.concat(d));
+		
+		System.out.println("================================================");
+		
+		String e = new String("필요업슨문자열해당문자열필요없는문자열");
+		
+		System.out.println(e.contains("해당문자열"));
+		
+		System.out.println(e.contains("JAVA"));
+		
+		String r = "JAVA";
+		System.out.println(r.replace("A", ""));
+		
+		System.out.println("==============================================");
+		
+		String ss = "JaVa";
+		
+		System.out.println(ss.toUpperCase());
+		System.out.println(ss.toLowerCase());
+		
+		String sss = String.valueOf(1234+12142);
+		
+		System.out.println(sss.length());
+		
+		int i =Integer.parseInt(sss);
+		
+		System.out.println(i);
+		
+		
 		
 	}
 }
