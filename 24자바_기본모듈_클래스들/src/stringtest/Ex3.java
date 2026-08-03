@@ -45,8 +45,16 @@ public class Ex3 {
 		
 		MemberDTO noDetail = new MemberDTO("정하나", "제주시 연동 999");
 		System.out.println("이름: " + noDetail.getName() + ", 상세 주소: " + noDetail.getDetailAddress());
+
+		// indexOf(), lastIndexOf() 메소드의 차이
 		
+		String text = "apple, banana, cherry, banana, date";
 		
+		System.out.println("indexOf(\"banana\") = " + text.indexOf("banana"));
+		
+		System.out.println("lastIndexOf(\"banana\") = " + text.lastIndexOf("banana"));
+		
+		System.out.println("lastIndexOf(\"melon\") = " + text.lastIndexOf("melon"));
 		
 	}
 }
