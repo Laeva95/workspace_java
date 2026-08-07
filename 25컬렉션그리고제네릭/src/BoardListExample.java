@@ -35,10 +35,34 @@ public class BoardListExample {
 		list.add(new BoardDTO(2, "두번째 글", "lee", 5));
 		list.add(new BoardDTO(3, "세번째 글", "kim", 5));
 		
+		// 3. 데이터 3개 출력
+		System.out.println("번호\t제목\t\t\t작성자\t조회수");
+		System.out.println("=================================================");
+		for(BoardDTO dto : list) {
+			System.out.println(dto.getNo() + "\t" + dto.getTitle() + "\t\t\t" 
+		+ dto.getWriter() + "\t" + dto.getHit());
+		}
 		
+		// 4. 글 상세보기
+		int targetNo = 2;		// 사용자가 클릭한 글 번호
 		
+		System.out.println("==== " + targetNo + "번 글 상세보기 ===");
 		
+		for(BoardDTO dto : list) {
+			if(targetNo == dto.getNo()) {
+				dto.increaseHit();
+				System.out.println("제목: " + dto.getTitle());
+				System.out.println("작성자: " + dto.getWriter());
+				System.out.println("조회수: " + dto.getHit());
+			}
+		}
 		
-		
+		// 5. 글 수정하기
+		System.out.println("=== 상세 보기 후 목록 다시 출력 ===");
+		System.out.println("=================================================");
+		for(BoardDTO dto : list) {
+			System.out.println(dto.getNo() + "\t" + dto.getTitle() + "\t\t\t" 
+		+ dto.getWriter() + "\t" + dto.getHit());
+		}
 	}
 }
