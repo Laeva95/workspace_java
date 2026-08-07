@@ -72,7 +72,7 @@ public class HashMapEx3 {
 		if(map.isEmpty()) {
 			System.out.println("HashMap이 비어 있습니다.");
 		}
-
+		
 
 	}//----- main
 }//--- class
