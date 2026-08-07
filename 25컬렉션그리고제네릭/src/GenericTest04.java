@@ -1,6 +1,37 @@
 import java.util.ArrayList;
 import java.util.Vector;
 
+interface Rentable<P>{
+	P rent();
+}
+class Home {
+	public void turnOnLight() {
+		System.out.println("전등을 켭니다.");
+	}
+}
+
+class Car2 {
+	public void run() {
+		System.out.println("자동차가 달립니다.");
+	}
+}
+
+class HomeAgency implements Rentable<Home>{
+
+	@Override
+	public Home rent() {
+		return new Home();
+	}
+}
+
+class CarAgency implements Rentable<Car2>{
+
+	@Override
+	public Car2 rent() {
+		return new Car2();
+	}
+}
+
 class GenericClass<T>{			// T: 아직 결정되지 않은 자료형
 								// 객체가 생성될 때 어떤 자료형인지 결정됨
 	private T member;
@@ -21,6 +52,9 @@ class Product<K, V>{
 	public V getModel() { return model; }
 	public void setModel(V model) { this.model = model; }
 }
+
+class Tv {}
+class Car {}
 
 public class GenericTest04 {
 
@@ -58,6 +92,42 @@ public class GenericTest04 {
 		obj05.add(3);
 		obj05.add(4);
 		obj05.add(Integer.valueOf(5));
+		
+		System.out.println("=================================");
+		
+		Product<Tv, String> product01 = new Product<Tv, String>();
+		
+		product01.setKind(new Tv());
+		product01.setModel("스마트 TV");
+		
+		Tv tv = product01.getKind();
+		String model = product01.getModel();
+		
+		System.out.println(tv + "\n" + model);
+		
+		Product<Car, String> product02 = new Product<Car, String>();
+		
+		product02.setKind(new Car());
+		product02.setModel("SUV 자동차");
+		
+		Car car = product02.getKind();
+		String model2 = product02.getModel();
+		
+		System.out.println(car + "\n" + model2);
+		
+		System.out.println("=====================================");
+		
+		HomeAgency homeAgency = new HomeAgency();
+		
+		Home home = homeAgency.rent();
+		
+		home.turnOnLight();
+		
+		CarAgency carAgency = new CarAgency();
+		
+		Car2 car2 = carAgency.rent();
+		
+		car2.run();
 		
 	}
 }
