@@ -120,7 +120,7 @@ public class BoardCommentTest {
 		comment1.put("writer", "김학생");
 		comment1.put("content", "저도 방금 제출했어요");
 		commentList.add(comment1);
-
+		
 		//댓글 2 : commentNo=2, writer="박학생", content="기한이 언제까지인가요?"
 		HashMap<String, Object> comment2 = new HashMap<String, Object>();
 		comment2.put("commentNo", 2);
@@ -144,9 +144,15 @@ public class BoardCommentTest {
 	public static void main(String[] args) {
 
 		//1단계 : selectBoard 메소드 호출해서 (글번호 2 전달) 글 1개 HashMap 주소 저장
+		// selectBoard: HashMap<String, Object> 을 반환하는 메소드
 	 	HashMap<String, Object> board = selectBoard(2);
 
 		//2단계 : board 에서 글 정보 꺼내 상세보기 출력 (다운캐스팅 필수)
+		// no: 글번호
+ 		// title: 제목
+ 		// writer: 작성자
+ 		// content: 내용
+ 		// hit: 조회수
 	 	System.out.println("==================== 글 상세보기 ====================");
 	 	System.out.println("글번호 : " + board.get("no"));
 	 	System.out.println("제목 : " + board.get("title"));
@@ -155,18 +161,23 @@ public class BoardCommentTest {
 	 	System.out.println("조회수 : " + board.get("hit"));
 
 		//3단계 : selectCommentList 메소드 호출해서 (글번호 2 전달) 댓글 목록 ArrayList 주소 저장
+		// selectCommentList: List<HashMap<String, Object>> 을 반환하는 메소드
 	 	List<HashMap<String, Object>> commentList = selectCommentList(2);
 
 		//4단계 : [실무 포인트] board 안에 "commentList" key 로 댓글 목록 통째로 저장
 	 	board.put("commentList", commentList);
 
 		//5단계 : board 에서 "commentList" key 로 댓글 목록 다시 꺼내 댓글 갯수 출력
-	 	List<HashMap<String, Object>> list = (List)board.get(commentList);
+	 	List<HashMap<String, Object>> list = (List<HashMap<String, Object>>)board.get("commentList");
 	 	System.out.println("==================== 댓글 (" + list.size() + "개) ====================");
 	 	
 		//6단계 : for 반복문으로 댓글 전체 출력
-
-
+		for(HashMap<String, Object> comment : list){
+			// commentNo: 댓글 번호
+			// writer: 댓글 작성자
+			// content: 댓글 내용
+			System.out.println(comment.get("commentNo") + " | " + comment.get("writer") + " : " + comment.get("content"));
+		}
 
 	}//----- main
 }//--- class
