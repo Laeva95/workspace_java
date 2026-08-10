@@ -34,10 +34,5 @@ public class FileType01 {
 			e.printStackTrace();
 		}
 		
-		
-		
-		
-		
-		
 	}
 }
