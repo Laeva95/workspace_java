@@ -121,10 +121,63 @@ public class Nio02_TextReadWrite {
     	List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
 
     	System.out.println("줄 개수: " + lines.size());
+    	System.out.println();
     	
+    	// 저장된 라인 하나씩 접근
     	for(String line : lines) {
-    		System.out.println(line);
+    		// 각 라인을 ',' 기준으로 잘라서 출력
+    		String[] strs = line.split(",");
+    		
+    		String name = strs[0];					// 이름
+    		int age = Integer.parseInt(strs[1]);	// 나이
+    		String address = strs[2];				// 주소
+    		
+    		System.out.println("이름: " + name + ", 내년 나이: " + (age + 1) + ", 주소: " + address);
+    		
     	}
+    	
+    	// ============================================
+    	// 파일 끝에 이어 쓰기
+    	// StandardOpenOption.APPEND: 기존 내용을 지우지 않고 이어서 입력
+    	Files.writeString(path, "박민수,30,인천\n", StandardCharsets.UTF_8, StandardOpenOption.APPEND);
+    	
+    	System.out.println("이어쓰기 후 파일 크기: " + Files.size(path) + " bytes");
+    	
+    	lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+    	System.out.println("이어쓰기 후 줄 수: " + lines.size());
+    	
+    	System.out.println();
+    	
+    	// ================================================
+    	// List를 만들어 파일로 저장하기
+    	
+    	List<String> newList = new ArrayList<String>();
+    	
+    	newList.add("상품코드,상품명,가격");
+    	newList.add("P001,키보드,35000");
+    	newList.add("P002,마우스,18000");
+
+    	Path productPath = Path.of("product.txt");
+    	
+    	// List를 한 줄씩 파일 내용에 추가. 자동 줄바꿈
+    	Files.write(productPath, newList, StandardCharsets.UTF_8);
+    	
+    	System.out.println("product.txt 저장 완료 (" + Files.size(productPath) + " bytes)");
+    	
+    	// ======================================================
+    	// [6] 파일에 저장 결과를 다시 읽어 확인
+    	
+    	System.out.println("[6] 파일에 저장한 결과 확인");
+    	
+    	List<String> productList = Files.readAllLines(productPath, StandardCharsets.UTF_8);
+    	
+    	for(int i = 0; i < productList.size(); i++) {
+    		System.out.println(i + 1 + "행: " + productList.get(i));
+    	}
+    	
+    	System.out.println();
+    	
+    	
     	
     	
     }   // main 끝

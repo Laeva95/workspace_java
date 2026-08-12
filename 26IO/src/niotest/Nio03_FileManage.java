@@ -93,9 +93,115 @@ public class Nio03_FileManage {
         // [1] 폴더 3개와 파일 2개 준비
         // ==============================================================
         System.out.println("===== [1] 폴더와 임시 파일 준비 =====");
-
- 
-
+        
+        Path tempDir = Path.of("temp");
+        Path uploadDir = Path.of("uploads");
+        Path backupDir = Path.of("backup");
+        
+        Files.createDirectories(tempDir);
+        Files.createDirectories(uploadDir);
+        Files.createDirectories(backupDir);
+        
+        System.out.println("temp / uploads / backup 폴더 생성 완료");
+        
+        Path tempReport = tempDir.resolve("report.txt");        
+        Path tempNotice = tempDir.resolve("notice.txt");
+        
+        Files.writeString(tempReport, "8월 업무 보고서\n작성자 홍길동\n", StandardCharsets.UTF_8);
+        Files.writeString(tempNotice, "8월 공지사항\n휴무일 안내\n", StandardCharsets.UTF_8);
+        
+        System.out.println("임시 원본파일 2개 생성 완료");
+        System.out.println();
+        
+        // ===============================================================
+        System.out.println("===== [2] 파일 복사 copy =====");
+        
+        Path uploadReport = uploadDir.resolve("report.txt");
+        
+        Files.copy(tempReport, uploadReport, StandardCopyOption.REPLACE_EXISTING);
+        
+        System.out.println("복사 완료: " + tempReport + " -> " + uploadReport);
+        
+        System.out.println("원본 파일 남아 있나?: " + Files.exists(tempReport));
+        System.out.println("사본 생겼나?: " + Files.exists(uploadReport));
+        System.out.println();
+        
+        // =================================================================
+        System.out.println("===== [3] 파일 이동 move =====");
+        
+        Path uploadNotice = uploadDir.resolve("notice.txt");
+        
+        Files.move(tempNotice, uploadNotice, StandardCopyOption.REPLACE_EXISTING);
+        
+        System.out.println("파일 이동 완료: " + tempNotice + " -> " + uploadNotice);
+        
+        System.out.println("원본 파일 남아 있나?: " + Files.exists(tempNotice));
+        System.out.println("사본 생겼나?: " + Files.exists(uploadNotice));
+        System.out.println();
+        
+        // ==================================================================
+        System.out.println("===== [4] 파일 이름 바꾸기 =====");
+        
+        Path renamed = uploadDir.resolve("notice_202608.txt");
+        
+        Files.move(uploadNotice, renamed, StandardCopyOption.REPLACE_EXISTING);
+        
+        System.out.println("파일 이름 변경: notice.txt -> notice_202608.txt");
+        System.out.println();
+        
+        // ===================================================================
+        System.out.println("===== [5] DirectoryStream 스트림 통로 이용 =====");
+        
+        try(DirectoryStream<Path> stream = Files.newDirectoryStream(uploadDir)){
+        	for(Path p : stream) {
+        		System.out.println("파일명: " + p.getFileName() + " / 크기 " + Files.size(p) + "bytes");
+        	}
+        }
+        System.out.println();
+        
+        // ================================================================
+        System.out.println("===== [6] 전체 파일 백업 =====");
+        
+        int count = 0;
+        
+        try(DirectoryStream<Path> stream = Files.newDirectoryStream(uploadDir)){
+        	for (Path p : stream) {
+        		Path target = backupDir.resolve(p.getFileName());
+        		
+        		Files.copy(p, target, StandardCopyOption.REPLACE_EXISTING);
+        		
+        		System.out.println("백업: " + p.getFileName());
+        		
+        		count++;
+			}
+        	System.out.println("백업한 파일 수: " + count);
+        }
+        
+        // ==============================================================
+        System.out.println("===== [7] 파일 삭제 =====");
+        
+        Path tempTarget = tempDir.resolve("report.txt");
+        
+        boolean isDeleted = Files.deleteIfExists(tempTarget);
+        
+        System.out.println("temp/report.txt 삭제됨?: " + isDeleted);
+        System.out.println("삭제 후 존재?: " + Files.exists(tempTarget));
+        System.out.println();
+        
+        // ==============================================================
+        System.out.println("===== [8] 백업 파일 내용 확인 =====");
+        
+        Path backupReport = backupDir.resolve("report.txt");
+        
+        List<String> lines = Files.readAllLines(backupReport, StandardCharsets.UTF_8);
+        
+        for(String line : lines) {
+        	System.out.println("report.txt 파일에서 읽어온 내용: " + line);
+        }
+        System.out.println();
+        
+        
+        
     }   // main 끝
 
 }   // 클래스 끝

@@ -120,14 +120,34 @@ public class Exercise03_Student {
         //   폴더 이름 : "files" / "doc" / "etc" / "backup2"
         //   createDirectories (끝에 s) : 이미 있어도 예외가 없다. 반복 실행 안전
         // TODO: filesDir / docDir / etcDir / backupDir Path 만들고 createDirectories
-
+    	// Path 경로 객체 생성
+    	Path filesDir = Path.of("files");
+    	Path docDir = Path.of("doc");
+    	Path etcDir = Path.of("etc");
+    	Path backupDir = Path.of("backup2");
+    	
+    	// Path 경로 폴더 생성
+    	Files.createDirectories(filesDir);
+    	Files.createDirectories(docDir);
+    	Files.createDirectories(etcDir);
+    	Files.createDirectories(backupDir);
 
         // ---------- (2) 테스트 파일 5개 만들기 ----------
         //   resolve 결합 모델 : filesDir("files") + "report.txt" --> "files/report.txt"
         //   (filesDir 자체는 안 바뀌고 새 Path 객체가 반환된다)
         // TODO: files 폴더 안에 5개 파일을 writeString 으로 생성
         //       힌트: filesDir.resolve("report.txt") 형태로 경로를 만든다
-
+    	Path reportFile = filesDir.resolve("report.txt");
+    	Path noticeFile = filesDir.resolve("notice.txt");
+    	Path photoFile = filesDir.resolve("photo.jpg");
+    	Path dataFile = filesDir.resolve("data.csv");
+    	Path logoFile = filesDir.resolve("logo.png");
+    	
+    	Files.writeString(reportFile, "report 파일 입니다.", StandardCharsets.UTF_8);
+    	Files.writeString(noticeFile, "notice 파일 입니다.", StandardCharsets.UTF_8);
+    	Files.writeString(photoFile, "photo 파일 입니다.", StandardCharsets.UTF_8);
+    	Files.writeString(dataFile, "data 파일 입니다.", StandardCharsets.UTF_8);
+    	Files.writeString(logoFile, "logo 파일 입니다.", StandardCharsets.UTF_8);
 
         // ---------- (3)(4) 확장자로 분류하기 ----------
         System.out.println("===== 분류 시작 =====");
@@ -151,22 +171,46 @@ public class Exercise03_Student {
         //       파일명을 String 으로 꺼내 endsWith(".txt") 로 판단
         //       doc 또는 etc 로 Files.move
         //       이동 결과 출력
+        try(DirectoryStream<Path> stream = Files.newDirectoryStream(filesDir)){
+        	for(Path p : stream) {
+        		String fileName = p.getFileName().toString();
+        		String dirName;
+        		
+        		if(fileName.endsWith(".txt")) {
+        			Path target = docDir.resolve(p.getFileName().toString());
+        			Files.move(p, target, StandardCopyOption.REPLACE_EXISTING);
+        			dirName = docDir.getFileName().toString();
+        		}else {
+        			Path target = etcDir.resolve(p.getFileName().toString());
+        			Files.move(p, target, StandardCopyOption.REPLACE_EXISTING);
+        			dirName = etcDir.getFileName().toString();
+        		}
+        		
+        		System.out.println(fileName + " -> " + dirName + " 폴더로 이동");
+        	}
+        }
 
         System.out.println();
+        
+
+//        		 *   ===== 백업 =====
+//        		 *   백업 완료 : notice.txt
+//        		 *   백업 완료 : report.txt
+//        		 *   총 2개 백업
 
         // ---------- (5) 분류 결과 확인 ----------
         //   같은 목록 출력 코드가 doc / etc 두 번 필요하다.
         //   그대로 두 번 써도 되고, 정답처럼 보조 메서드로 분리해도 된다.
         System.out.println("===== doc 폴더 =====");
         // TODO: doc 폴더 목록 출력 + 개수 출력
-
+        getFileList(docDir);
         System.out.println();
 
         System.out.println("===== etc 폴더 =====");
         // TODO: etc 폴더 목록 출력 + 개수 출력
-
+        getFileList(etcDir);
         System.out.println();
-
+        
         // ---------- (6) doc 폴더 백업 ----------
         //   백업 방향 모델 (copy 이므로 doc 은 그대로)
         //     [doc]  report.txt notice.txt  --copy--> [backup2]  report.txt notice.txt
@@ -174,6 +218,31 @@ public class Exercise03_Student {
         System.out.println("===== 백업 =====");
         // TODO: doc 폴더 전체를 backup2 로 copy (REPLACE_EXISTING)
         //       백업 개수 출력
-
+        try(DirectoryStream<Path> stream = Files.newDirectoryStream(docDir)){
+        	int count = 0;
+        	for(Path p : stream) {
+        		Path target = backupDir.resolve(p.getFileName().toString());
+        		Files.copy(p, target, StandardCopyOption.REPLACE_EXISTING);
+        		System.out.println("백업 완료 : " + p.getFileName().toString());
+        		count++;
+        	}
+        	System.out.println("총 " + count + "개 백업");
+        }
+    }
+    
+    public static void getFileList(Path path) throws IOException {
+    	try(DirectoryStream<Path> stream = Files.newDirectoryStream(path)){
+    		for(Path p : stream) {
+    			System.out.println(p.getFileName() + " (" + Files.size(p) + ")");
+    		}
+    	}
+    }
+    public static void getFileList(String string) throws IOException {
+    	Path path = Path.of(string);
+    	try(DirectoryStream<Path> stream = Files.newDirectoryStream(path)){
+    		for(Path p : stream) {
+    			System.out.println(p.getFileName() + " (" + Files.size(p) + ")");
+    		}
+    	}
     }
 }
