@@ -174,41 +174,38 @@ public class Exercise03_Student {
         try(DirectoryStream<Path> stream = Files.newDirectoryStream(filesDir)){
         	for(Path p : stream) {
         		String fileName = p.getFileName().toString();
-        		String dirName;
+        		String targetName;
         		
         		if(fileName.endsWith(".txt")) {
-        			Path target = docDir.resolve(p.getFileName().toString());
+        			Path target = docDir.resolve(fileName);
         			Files.move(p, target, StandardCopyOption.REPLACE_EXISTING);
-        			dirName = docDir.getFileName().toString();
+        			targetName = docDir.getFileName().toString();
         		}else {
-        			Path target = etcDir.resolve(p.getFileName().toString());
+        			Path target = etcDir.resolve(fileName);
         			Files.move(p, target, StandardCopyOption.REPLACE_EXISTING);
-        			dirName = etcDir.getFileName().toString();
+        			targetName = etcDir.getFileName().toString();
         		}
         		
-        		System.out.println(fileName + " -> " + dirName + " 폴더로 이동");
+        		System.out.println(fileName + " -> " + targetName + " 폴더로 이동");
         	}
         }
 
         System.out.println();
-        
-
-//        		 *   ===== 백업 =====
-//        		 *   백업 완료 : notice.txt
-//        		 *   백업 완료 : report.txt
-//        		 *   총 2개 백업
+       
 
         // ---------- (5) 분류 결과 확인 ----------
         //   같은 목록 출력 코드가 doc / etc 두 번 필요하다.
         //   그대로 두 번 써도 되고, 정답처럼 보조 메서드로 분리해도 된다.
         System.out.println("===== doc 폴더 =====");
         // TODO: doc 폴더 목록 출력 + 개수 출력
-        getFileList(docDir);
+        int docCount = getFileList(docDir);
+        System.out.println("doc 파일 수 : " + docCount);
         System.out.println();
 
         System.out.println("===== etc 폴더 =====");
         // TODO: etc 폴더 목록 출력 + 개수 출력
-        getFileList(etcDir);
+        int etcCount = getFileList(etcDir);
+        System.out.println("etc 파일 수 : " + etcCount);
         System.out.println();
         
         // ---------- (6) doc 폴더 백업 ----------
@@ -230,19 +227,32 @@ public class Exercise03_Student {
         }
     }
     
-    public static void getFileList(Path path) throws IOException {
+    public static int getFileList(Path path) throws IOException {
+    	if(!Files.isDirectory(path))
+    		return 0;
+    	
+    	int count = 0;
     	try(DirectoryStream<Path> stream = Files.newDirectoryStream(path)){
     		for(Path p : stream) {
-    			System.out.println(p.getFileName() + " (" + Files.size(p) + ")");
+    			System.out.println(p.getFileName() + " (" + Files.size(p) + " bytes)");
+    			count++;
     		}
     	}
+    	return count;
     }
-    public static void getFileList(String string) throws IOException {
+    public static int getFileList(String string) throws IOException {
     	Path path = Path.of(string);
+    	
+    	if(!Files.isDirectory(path))
+    		return 0;
+    	
+    	int count = 0;
     	try(DirectoryStream<Path> stream = Files.newDirectoryStream(path)){
     		for(Path p : stream) {
-    			System.out.println(p.getFileName() + " (" + Files.size(p) + ")");
+    			System.out.println(p.getFileName() + " (" + Files.size(p) + " bytes)");
+    			count++;
     		}
     	}
+    	return count;
     }
 }
