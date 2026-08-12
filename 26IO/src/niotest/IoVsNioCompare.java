@@ -61,8 +61,8 @@ public class IoVsNioCompare {
 		System.out.println();
 		
 		// =========================================================
-		// [3] NIO 채널 + 버퍼
-		System.out.println("=====[4] NIO 채널 + 버퍼=====");
+		// [3] NIO 채널 + 버퍼 쓰기
+		System.out.println("=====[4] NIO 채널 + 버퍼 읽기=====");
 		
 		Path chPath = Path.of("nio_channel_data.txt");
 		
@@ -82,7 +82,25 @@ public class IoVsNioCompare {
 		System.out.println("FileChannel 채널 영역으로 파일에 쓴 byte 수 = " + written);
 		System.out.println();
 		
+		// ===========================================================
+		// [4] NIO 채널 + 버퍼 읽기
+		System.out.println("=====[5] NIO 채널 + 버퍼 쓰기=====");
 		
+		ch.position(0);
 		
+		ByteBuffer readBuf = ByteBuffer.allocate(10);
+		
+		int readCount = ch.read(readBuf);
+		
+		System.out.println("FileChannel 채널로 파일에서 읽어들인 바이트 수: " + readCount);
+		
+		readBuf.flip();
+		
+		while(readBuf.hasRemaining()) {
+			byte v = readBuf.get();
+			System.out.println("버퍼에서 꺼낸 값: " + v);
+		}
+
+		ch.close();
 	}
 }
