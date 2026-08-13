@@ -80,7 +80,9 @@ class SafeLikeService {
     //----------------------------------------------------------
 
     //여기에 TODO 1 의 메소드를 작성하시오
-
+    public synchronized void increase() {
+    	like++;
+    }
 
 
 
@@ -105,7 +107,12 @@ class SafeLikeService {
     //----------------------------------------------------------
 
     //여기에 TODO 2 의 메소드를 작성하시오
-
+    public void increaseBlock() {
+    	String name = Thread.currentThread().getName();
+    	synchronized (this) {
+			like++;
+		}
+    }
 
 
 
@@ -151,7 +158,13 @@ class SafeLikeTask implements Runnable {
     public void run() {
 
         //여기에 TODO 3 을 작성하시오
-
+    	for(int i = 0; i < 1000000; i++) {
+    		if(useBlock) {
+    			service.increaseBlock();
+    		}else {
+    			service.increase();
+    		}
+    	}
     }   //run 메소드의 끝
 
 }   //SafeLikeTask 클래스의 끝
@@ -182,15 +195,18 @@ public class ThreadEx05_Student {
         //------------------------------------------------------
 
         //여기에 TODO 4 의 아홉 줄을 작성하시오
-
-
-
-
-
-
-
-
-
+        SafeLikeService s1 = new SafeLikeService();
+        SafeLikeTask task1 = new SafeLikeTask(s1, false);
+        Thread a1 = new Thread(task1, "사용자A");
+        Thread a2 = new Thread(task1, "사용자B");
+        a1.start(); 
+        a2.start();
+        a1.join(); 
+        a2.join();
+        System.out.println("메소드 방식 결과 : " + s1.like);
+        
+        
+        
 
         //------------------------------------------------------
         // TODO 5 : 블록 방식(형태 2)을 같은 순서로 실험하시오
@@ -204,7 +220,15 @@ public class ThreadEx05_Student {
         //------------------------------------------------------
 
         //여기에 TODO 5 의 아홉 줄을 작성하시오
-
+        SafeLikeService s2 = new SafeLikeService();
+        SafeLikeTask task2 = new SafeLikeTask(s2, true);
+        Thread b1 = new Thread(task2, "사용자A");
+        Thread b2 = new Thread(task2, "사용자B");
+        b1.start(); 
+        b2.start();
+        b1.join(); 
+        b2.join();
+        System.out.println("블록 방식 결과 : " + s2.like);
     }   //main 의 끝
 
 }   //ThreadEx05_Student 클래스의 끝
