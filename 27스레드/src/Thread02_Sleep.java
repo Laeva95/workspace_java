@@ -14,7 +14,7 @@ class DownloadTask implements Runnable{
 	}
 }
 
-public class Thread_02_Sleep {
+public class Thread02_Sleep {
 
 	public static void main(String[] args) {
 		// Thread.sleep(ms): ms 밀리초 만큼 스레드를 일시 정지 시킴

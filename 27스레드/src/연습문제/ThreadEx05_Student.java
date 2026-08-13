@@ -84,8 +84,6 @@ class SafeLikeService {
     	like++;
     }
 
-
-
     //----------------------------------------------------------
     // TODO 2 : [형태 2] synchronized 블록을 완성하시오
     //
@@ -113,10 +111,6 @@ class SafeLikeService {
 			like++;
 		}
     }
-
-
-
-
 
 }   //SafeLikeService 클래스의 끝
 
@@ -205,9 +199,6 @@ public class ThreadEx05_Student {
         a2.join();
         System.out.println("메소드 방식 결과 : " + s1.like);
         
-        
-        
-
         //------------------------------------------------------
         // TODO 5 : 블록 방식(형태 2)을 같은 순서로 실험하시오
         //
