@@ -14,7 +14,7 @@ public class Ex3 {
 										.collect(Collectors.toList());	// 스트림을 리스트로 변환
 				
 		for(int i : newNumber) {
-			System.out.println(i);
+			System.out.println("newNumber: " + i);
 		}
 		
 		// 2. map()
@@ -25,7 +25,7 @@ public class Ex3 {
 										.collect(Collectors.toList());
 		
 		for(int i : nameLengths) {
-			System.out.println(i);
+			System.out.println("nameLegnths: " + i);
 		}
 		
 		
