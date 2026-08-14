@@ -24,9 +24,14 @@ public class Ex2 {
 		stream = stream.filter(score -> score >= 60);
 		IntStream stream2 = stream.mapToInt(score -> score.intValue());
 		
-		// 
+		// 결과 산출
+		// average(): 스트림의 평균 값을 계산하는 메소드. Optional 객체로 값을 반환
+		// orElse(): Optional 객체에 값이 있다면 해당 값을 반환하고 값이 없다면 매개변수를 반환
+		double average = stream2.average().orElse(0.0);
 		
+		System.out.println("60점 이상인 사람들의 평균 점수: " + average);
 		
+		System.out.println((65+70+80+90+85) / 5);
 		
 		
 		
